@@ -5,3 +5,5 @@ Assuming you have qBittorrent running on a machine and a web server such as ngin
 ```sh
 rsync public/ user@host:/path/to/qbittorrent/downloads/ui
 ```
+
+<img width="1039" height="809" alt="image" src="https://github.com/user-attachments/assets/22afdd7e-c0b6-4c4e-ada4-5dd8c3e16694" />
