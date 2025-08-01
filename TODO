@@ -1,0 +1,42 @@
+fix vlc protocol with filename containing spaces PLEASE
+keyboard navigation
+  up/down move between torrents
+  space or enter
+    torrent: toggle expand file list
+    file: download
+  left/right move between columns
+    torrent: delete, archive, expand
+    file: priority, play, download
+move the "local" download folder from vlc:// link to the vlc utility itself
+---------------------------------------------------------------------------
+git / push to github
+---------------------------------------------------------------------------
+show "active" state on Play button 
+style filter input
+show torrent as selected? no
+filter feature
+  type to start filtering
+  this focuses a text input at top of page
+  use display: none to filter?
+  escape to clear input
+figure out a "public" folder that gets uploaded
+  van.d.ts can't be separated from its .js counterpart
+  so it must live in "public"?
+  i guess that's fine
+remove extension indicator
+omit path common prefix
+bug: incomplete file has link
+bug: paused/"do not download" show as green "downloading"
+make sure files request goes through on click (not INTERVAL later)
+spacing of torrent entries and files
+padding at the top so that first item isn't at top of screen
+numbers: faded leading zeros 
+instant feedback when clicking a torrent
+file download priority: normal / high / none
+hover color less dark
+play button (for vlc protocol)
+remove Delete button from ratio
+  move to date? left of date?
+archive feature
+  button (where?)
+  use order: 9999 to push to bottom of page?

@@ -1,0 +1,219 @@
+:root {
+  --background: white;
+  --background-hover: rgb(245, 248, 252);
+  --text: black;
+  --dim-text: rgb(134, 134, 134);
+  --remove: rgb(255, 240, 244);
+  --remove-active: rgb(255, 215, 218);
+  --downloading: rgb(249, 252, 248);
+  --buttons-column-width: 8ch;
+  --date-column-width: 10ch;
+  --status-column-width: 8ch;
+  --torrent-vertical-padding: 0.4em;
+  font-family: system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  background-color: var(--background);
+  color: var(--text);
+}
+html,
+body {
+  margin: 0;
+}
+
+button {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: unset;
+  font: unset;
+  background: unset;
+}
+
+body {
+  padding-bottom: 2em;
+}
+
+.top {
+  height: 200px;
+}
+.filter-input {
+  appearance: none;
+  margin: unset;
+  border: unset;
+  padding: unset;
+  font: unset;
+  background: unset;
+  outline: unset;
+  width: 90vw;
+  height: 100%;
+  font-size: 128px;
+  font-weight: lighter;
+  padding-left: 1ch;
+  &:not(:hover, :focus) {
+    filter: grayscale(1);
+  }
+}
+
+.torrents {
+  display: flex;
+  flex-direction: column;
+}
+
+.torrent {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1em;
+}
+
+.torrent-info,
+.file-info {
+  display: flex;
+  white-space: nowrap;
+  line-height: 1.4em;
+}
+.torrent-info {
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 100ms ease-out;
+  /* border-top: 1px dashed rgba(0, 0, 0, 0.43); */
+}
+
+/* Torrent vertical padding */
+.torrent-info {
+  padding-block: var(--torrent-vertical-padding);
+}
+.torrent.open {
+  .torrent-info {
+    padding-bottom: 0;
+  }
+  .files {
+    padding-bottom: var(--torrent-vertical-padding);
+  }
+}
+
+.torrent.removed {
+  background-color: var(--remove);
+  pointer-events: none;
+}
+.torrent.downloading:not(.removed) {
+}
+.torrent.removing:not(.removed) .torrent-info {
+  animation: removing 1s ease infinite alternate;
+}
+@keyframes removing {
+  from {
+    background: transparent;
+  }
+  to {
+    background: var(--remove);
+  }
+}
+.torrent:not(.removed):not(.removing):hover {
+  background-color: var(--background-hover);
+}
+
+.torrent.archived {
+  order: 999999;
+}
+
+.buttons {
+  flex: 0 0 var(--buttons-column-width);
+  display: flex;
+}
+.buttons button {
+  flex: 1;
+  width: calc(1lh + 2 * var(--torrent-vertical-padding));
+  position: relative;
+  &:not(:hover) {
+    filter: grayscale(1);
+    color: var(--dim-text);
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    height: calc(100% + 2 * var(--torrent-vertical-padding));
+    width: 100%;
+  }
+}
+.date {
+  flex: 0 0 var(--date-column-width);
+  text-align: right;
+}
+.status,
+.size {
+  flex: 0 0 var(--status-column-width);
+  text-align: right;
+}
+
+.status {
+  position: relative;
+}
+
+.leading-zeroes {
+  color: var(--dim-text);
+}
+.unit {
+  color: var(--dim-text);
+  font-size: 80%;
+  margin-left: 0.3ch;
+}
+
+.name {
+  margin-left: 1em;
+}
+
+.torrent:not(.open) .files {
+  display: none;
+}
+
+.file-info {
+  padding-left: calc(var(--buttons-column-width) + var(--date-column-width));
+}
+
+.file-info .status:has(.priority, .play) {
+  cursor: pointer;
+  user-select: none;
+  transition: filter 60ms ease-in-out;
+}
+.file-info .status :is(.priority, .play) {
+  color: var(--dim-text);
+  &.priority {
+    float: left;
+    margin-left: 1ch;
+  }
+  &.play {
+    filter: grayscale(1);
+    &:focus {
+      filter: grayscale(0) hue-rotate(40deg);
+    }
+  }
+}
+.file-info .status:hover :is(.priority, .play) {
+  color: var(--text);
+  &.play {
+    filter: grayscale(0);
+  }
+}
+
+.file-info.downloading .name {
+  color: var(--dim-text);
+}
+.file-info a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: 1px underline solid currentColor;
+  }
+}
+
+.file-path {
+  color: var(--dim-text);
+  font-size: 80%;
+  margin-left: 1ch;
+}
+
+.hidden {
+  display: none;
+}
