@@ -70,6 +70,9 @@ const searchInput = input({
 addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     filterText.val = ''
+    if (document.activeElement === searchInput) {
+      searchInput.blur()
+    }
     return
   }
 
@@ -403,7 +406,7 @@ syncPoller.start()
 // Paste to add a torrent
 document.addEventListener('paste', (event) => {
   const text = event.clipboardData.getData('text').trim()
-  if (!text.startsWith('magnet')) return
+  if (!text.match(/^(magnet|https?:\/\/)/i)) return
   console.log(`Adding torrent: ${text}`)
   addTorrent(text)
 })

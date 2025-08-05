@@ -1,4 +1,3 @@
-fix vlc protocol with filename containing spaces PLEASE
 keyboard navigation
   up/down move between torrents
   space or enter
@@ -8,9 +7,10 @@ keyboard navigation
     torrent: delete, archive, expand
     file: priority, play, download
 move the "local" download folder from vlc:// link to the vlc utility itself
+fix vlc protocol with filename containing spaces PLEASE
+---------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 git / push to github
----------------------------------------------------------------------------
 show "active" state on Play button 
 style filter input
 show torrent as selected? no
