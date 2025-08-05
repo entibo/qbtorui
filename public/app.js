@@ -61,16 +61,19 @@ const searchInput = input({
   autocomplete: 'off',
   class: 'filter-input',
   value: filterText,
-  placeholder: '🔎',
+  placeholder: 'all torrents',
   oninput(e) {
     filterText.val = e.target.value
   },
 })
+const searchInputActive = van.state(false)
+searchInput.addEventListener('focus', () => (searchInputActive.val = true))
+searchInput.addEventListener('blur', () => (searchInputActive.val = false))
 
 addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     filterText.val = ''
-    if (document.activeElement === searchInput) {
+    if (searchInputActive.val) {
       searchInput.blur()
     }
     return
@@ -78,13 +81,29 @@ addEventListener('keydown', (e) => {
 
   if (e.ctrlKey || e.metaKey) return
 
-  if (e.key.length === 1 && document.activeElement !== searchInput) {
+  if (e.key.length === 1 && !searchInputActive.val) {
     filterText.val = e.key
     searchInput.focus()
   }
 })
 
-van.add(document.body, div({ class: 'top' }, searchInput))
+van.add(
+  document.body,
+  div(
+    { class: 'top' },
+    button(
+      {
+        onclick() {
+          filterText.val = ''
+          searchInput.blur()
+        },
+        disabled: van.derive(() => !filterText.val),
+      },
+      '🔎',
+    ),
+    searchInput,
+  ),
+)
 
 //
 

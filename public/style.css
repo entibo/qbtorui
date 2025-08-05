@@ -35,6 +35,16 @@ body {
 
 .top {
   height: 200px;
+  height: 100%;
+  font-size: 96px;
+  display: flex;
+}
+.top button {
+  font-size: 60px;
+  margin-inline: 0.3em;
+  &:disabled {
+    filter: grayscale(1);
+  }
 }
 .filter-input {
   appearance: none;
@@ -44,14 +54,7 @@ body {
   font: unset;
   background: unset;
   outline: unset;
-  width: min(600px, 50vw);
-  height: 100%;
-  font-size: 96px;
-  font-weight: lighter;
-  padding-left: 1ch;
-  &:not(:hover, :focus) {
-    filter: grayscale(1);
-  }
+  width: max(600px, 50vw);
 }
 
 .torrents {
