@@ -36,12 +36,11 @@ body {
 .top {
   height: 200px;
   height: 100%;
-  font-size: 96px;
+  font-size: 50px;
   display: flex;
 }
 .top button {
-  font-size: 60px;
-  margin-inline: 0.3em;
+  margin-inline: 0.5em;
   &:disabled {
     filter: grayscale(1);
   }
@@ -54,7 +53,8 @@ body {
   font: unset;
   background: unset;
   outline: unset;
-  width: max(600px, 50vw);
+  padding-block: 0.2em;
+  width: max(600px, 30vw);
 }
 
 .torrents {
