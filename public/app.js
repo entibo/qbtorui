@@ -326,12 +326,13 @@ function File(torrentHash, file, commonPathPrefix) {
               class: 'status',
               onclick() {
                 // Cycle
-                const priority = {
-                  [PRIORITY.DONT_DOWNLOAD]: PRIORITY.NORMAL,
-                  [PRIORITY.NORMAL]: PRIORITY.HIGH,
-                  [PRIORITY.HIGH]: PRIORITY.DONT_DOWNLOAD,
-                  [PRIORITY.MAXIMUM]: PRIORITY.DONT_DOWNLOAD,
-                }[file.val.priority]
+                const priority =
+                  {
+                    [PRIORITY.DONT_DOWNLOAD]: PRIORITY.NORMAL,
+                    [PRIORITY.NORMAL]: PRIORITY.HIGH,
+                    [PRIORITY.HIGH]: PRIORITY.DONT_DOWNLOAD,
+                    [PRIORITY.MAXIMUM]: PRIORITY.DONT_DOWNLOAD,
+                  }[file.val.priority] ?? PRIORITY.HIGH
                 setPriority({ hash: torrentHash }, file.val.index, priority)
                 // Update UI/state without awaiting confirmation from the server
                 file.val = { ...file.val, priority }
@@ -346,7 +347,7 @@ function File(torrentHash, file, commonPathPrefix) {
                     [PRIORITY.NORMAL]: '⌲',
                     [PRIORITY.HIGH]: '⌯⌲',
                     [PRIORITY.MAXIMUM]: '⌯⌯⌲',
-                  }[file.val.priority]),
+                  }[file.val.priority] ?? '⌲'),
               ),
             ),
             Progress(van.derive(() => file.val.progress)),

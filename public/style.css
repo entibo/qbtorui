@@ -116,7 +116,14 @@ body {
 }
 
 .torrent.archived {
-  order: 999999;
+  order: 999991;
+}
+.torrent.removing,
+.torrent.removed {
+  order: 999992;
+  button {
+    filter: none !important;
+  }
 }
 
 .buttons {
